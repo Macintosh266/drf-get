@@ -1,0 +1,22 @@
+{
+    "1": {
+        "name": "Ali",
+        "phone": "5849464445",
+        "email": "ali@gamil.com"
+    },
+    "2": {
+        "name": "Aziz",
+        "phone": "364984684",
+        "email": "aziz@gamil.com"
+    },
+    "3": {
+        "name": "Kamron",
+        "phone": "9489846456",
+        "email": "kamron@gamil.com"
+    },
+    "4": {
+        "name": "Shahzod",
+        "phone": "8768656546546",
+        "email": "shahzod@gamil.com"
+    }
+}
