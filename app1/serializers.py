@@ -11,3 +11,10 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model=Movie
         fields=['name','year','genre','actor']
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=CommitMovie
+        fields=['title','movie','author']
+        read_only_fields = ['author']
