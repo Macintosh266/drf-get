@@ -1,9 +1,15 @@
-from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
-
+from django.urls import path
 from app1.views import *
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
+from rest_framework_simplejwt.views import TokenVerifyView
+
 
 urlpatterns = [
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', LoginUser.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('actor/',ActorApi.as_view()),
     path('movie/',MovieApi.as_view()),
     path('actor1/<int:pk>/', ActorUpdate.as_view()),

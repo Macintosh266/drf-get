@@ -1,4 +1,5 @@
 from django.db.models import *
+from django.template.context_processors import request
 from django.template.defaulttags import comment
 from rest_framework.permissions import IsAuthenticated
 from .serializers import *
@@ -10,7 +11,7 @@ from rest_framework import status
 from .models import *
 import json
 from drf_yasg.utils import swagger_auto_schema
-
+from .make_token import *
 
 
 
@@ -181,3 +182,13 @@ class CommentDetailView(APIView):
         comment = get_object_or_404(CommitMovie, pk=pk)
         comment.delete()
         return Response(data={'message': 'Deleted'}, status=status.HTTP_204_NO_CONTENT)
+
+
+class LoginUser(APIView):
+    @swagger_auto_schema(request_body=LoginSerializer)
+    def post(self,request):
+        serialize=LoginSerializer(data=request.data)
+        serialize.is_valid(raise_exception=True)
+        user=get_object_or_404(User,username=serialize.validated_data.get('username'))
+        token=get_tokens_for_user(user)
+        return Response(data=token)
